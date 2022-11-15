@@ -178,6 +178,7 @@ def x310_node_pair(idx, x310_radio):
     node.addService(rspec.Execute(shell="bash", command=cmd))
 
     node_radio_if = node.addInterface("usrp_if")
+    node_comp = node.addInterface("conn_comp")
     node_radio_if.addAddress(rspec.IPv4Address("192.168.40.1",
                                                "255.255.255.0"))
     radio_link.addInterface(node_radio_if)
@@ -191,7 +192,7 @@ def x310_node_pair(idx, x310_radio):
     # LAN = rspec.LAN('LAN')
     LAN = request.Link("LAN")  # Link to computing node, Link for 2 nodes, and LAN for more nodes connection
     LAN.addInterface(add_node_comp)
-    LAN.addInterface(node_radio_if)
+    LAN.addInterface(node_comp)
 
     radio = request.RawPC("%s-radio" % (x310_radio.radio_name))
     radio.component_id = x310_radio.radio_name
