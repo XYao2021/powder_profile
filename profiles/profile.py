@@ -191,6 +191,7 @@ def x310_node_pair(idx, x310_radio):
     # LAN = rspec.LAN('LAN')
     LAN = request.Link("LAN")  # Link to computing node, Link for 2 nodes, and LAN for more nodes connection
     LAN.addInterface(add_node_comp)
+    LAN.addInterface(node_radio_if)
 
     radio = request.RawPC("%s-radio" % (x310_radio.radio_name))
     radio.component_id = x310_radio.radio_name
