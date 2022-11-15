@@ -184,7 +184,7 @@ def x310_node_pair(idx, x310_radio):
 
     # add_node only use for computing and connected to srsran node using wire line, so no need for disk image
     add_node = request.RawPC("%s-comp_ML" % (x310_radio.radio_name))
-    add_node.hardware_type = params.add_x310_nodetype
+    add_node.hardware_type = params.add_x310_pair_nodetype
     add_node.component_manager_id = GLOBALS.MNGR_ID
     add_node_comp = add_node.addInterface("ML_comp")
 
