@@ -151,8 +151,8 @@ import geni.rspec.emulab.spectrum as spectrum
 
 
 class GLOBALS:
-    BIN_PATH = "bin"
-    ETC_PATH = "etc"
+    BIN_PATH = "/local/repository/bin"
+    ETC_PATH = "/local/repository/etc"
     DEFAULT_SRSRAN_HASH = "release_22_04"
     SRSLTE_IMG = "urn:publicid:IDN+emulab.net+image+PowderTeam:U18LL-SRSLTE"
     MNGR_ID = "urn:publicid:IDN+emulab.net+authority+cm"  # URN: Uniform Resources Name, the permanent way to resource even if it doesn't exist anymore.
@@ -170,10 +170,10 @@ def x310_node_pair(idx, x310_radio):
     node.hardware_type = params.x310_pair_nodetype  # paired d740 computing node
     node.disk_image = GLOBALS.SRSLTE_IMG
     node.component_manager_id = GLOBALS.MNGR_ID
-    node.addService(rspec.Execute(shell="bash", command="bin/add-nat-and-ip-forwarding.sh"))
-    node.addService(rspec.Execute(shell="bash", command="bin/tune-cpu.sh"))
-    node.addService(rspec.Execute(shell="bash", command="bin/tune-sdr-iface.sh"))
-    node.addService(rspec.Execute(shell="bash", command="bin/package.sh"))  # Xin Yao
+    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/add-nat-and-ip-forwarding.sh"))
+    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/tune-cpu.sh"))
+    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/tune-sdr-iface.sh"))
+    node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/package.sh"))  # Xin Yao
     cmd = "{} {}".format(GLOBALS.SRS_DEPLOY_SCRIPT, GLOBALS.DEFAULT_SRSRAN_HASH)
     node.addService(rspec.Execute(shell="bash", command=cmd))
 
@@ -204,9 +204,9 @@ def b210_nuc_pair(idx, b210_node):  #remove idx because useless for this functio
     b210_nuc_pair_node = request.RawPC("%s-b210" % b210_node.node_id)
     b210_nuc_pair_node.component_id = b210_node.node_id
     b210_nuc_pair_node.disk_image = GLOBALS.SRSLTE_IMG
-    b210_nuc_pair_node.addService(rspec.Execute(shell="bash", command="bin/update-config-files.sh"))
-    b210_nuc_pair_node.addService(rspec.Execute(shell="bash", command="bin/tune-cpu.sh"))
-    b210_nuc_pair_node.addService(rspec.Execute(shell="bash", command="bin/package.sh"))  # Xin Yao
+    b210_nuc_pair_node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/update-config-files.sh"))
+    b210_nuc_pair_node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/tune-cpu.sh"))
+    b210_nuc_pair_node.addService(rspec.Execute(shell="bash", command="/local/repository/bin/package.sh"))  # Xin Yao
     cmd = "{} {}".format(GLOBALS.SRS_DEPLOY_SCRIPT, GLOBALS.DEFAULT_SRSRAN_HASH)
     b210_nuc_pair_node.addService(rspec.Execute(shell="bash", command=cmd))
 
